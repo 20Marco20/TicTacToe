@@ -24,5 +24,11 @@ namespace TicTacToe
         {
             InitializeComponent();
         }
+
+        private void Kasten_0_0_Click(object sender, RoutedEventArgs e)
+        {
+            Kasten_0_0.Background = new SolidColorBrush(Colors.DarkOrange);
+            Kasten_0_0.Foreground = new SolidColorBrush(Colors.SlateBlue);
+        }
     }
 }
