@@ -19,7 +19,7 @@
             </Setter>
             <Setter Property="Foreground" Value="AliceBlue"/>
             <Setter Property="FontSize" Value="90"/>
-            <Setter Property="BorderBrush" Value="#FF6594FF"/>
+            <Setter Property="BorderBrush" Value="#FF598CFF"/>
             <Setter Property="BorderThickness" Value="1"/>
 
         </Style>
