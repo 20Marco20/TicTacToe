@@ -21,6 +21,8 @@ namespace TicTacToe
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool _istErsterSpielerAmZug = true;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,50 +42,31 @@ namespace TicTacToe
             return true;
         }
         private void Kasten_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             Button buttonKasten = (Button)sender;
 
+            // Prüfen ob Kästchen leer ist
             if (buttonKasten.Content == null || buttonKasten.Content.ToString() == "")
             {
-                buttonKasten.Content = "X";
+                if (_istErsterSpielerAmZug)   // Spieler X
+                {
+                    buttonKasten.Content = "X";
+                    _istErsterSpielerAmZug = false;
+                }
+                else   // Spieler Y
+                {
+                    buttonKasten.Content = "O";
+                    _istErsterSpielerAmZug = true;
+                }
             }
             else
             {
-                MessageBox.Show("Spieler 1 hat das Feld bereits besetzt.", "Unzulässiger Zug", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("Das Feld ist bereits besetzt. Bitte ein freies Kästchen wählen.", "Unzulässiger Zug", MessageBoxButton.OK, MessageBoxImage.Stop);
             }
 
-
-
-                //if (buttonKasten.Content.ToString() == "X")
-                //{
-                //    buttonKasten.Content = "O";
-                //}
-                //else
-                //{
-                //    buttonKasten.Content = "X";
-                //}
-
-
-            //if (buttonKasten == null || buttonKasten.Content.ToString() == "")
-            //{
-            //    buttonKasten.Content = "X";
-
-
-
-            //}
-
-
-
-
-
-
-            //buttonKasten_0_0.Content = "X";
-
-            //if (IstSpielfeldVoll(true))
-            //{
-
-            //}
             
+            
+
 
 
 
@@ -92,45 +75,6 @@ namespace TicTacToe
             //kasten_0_0.Foreground = kasten_0_0.Background;
             //kasten_0_0.Background = bisherigerVordergrund;
 
-
-            //;
-
-            //foreach (UIElement item in Spielfeld.Children)
-            //{
-            //    if (item is Button Kasten_0_0)
-            //    {
-            //        
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Feld bereits von Sieler 1 belegt.");
-            //    }
-
-            //}
-
-
-            //if (buttonKasten_0_0 == null)
-            //{
-            //    kasten_0_0.Content = "X";
-            //}
-
-            //kasten_0_0.Content = "X";
-
-            //switch ((Button)sender)
-            //{
-            //    case (kasten_0_0.Content = "x")
-            //    {
-
-
-            //    }
-
-
-      //              {
-      //default:
-      //              break;
-      //              }
-          
-            //}
         }
     }
 }
