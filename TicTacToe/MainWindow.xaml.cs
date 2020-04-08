@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 
 namespace TicTacToe
@@ -27,23 +28,47 @@ namespace TicTacToe
         {
             InitializeComponent();
         }
+        
+        private void SpielfeldLeeren()
+        {
+            //kasten_0_0.Content = null;
+            //kasten_1_0.Content = null;
+            //kasten_2_0.Content = null;
+
+            //kasten_0_1.Content = null;
+            //kasten_1_1.Content = null;
+            //kasten_2_1.Content = null;
+
+            //kasten_0_2.Content = null;
+            //kasten_1_2.Content = null;
+            //kasten_2_2.Content = null;
+        }
 
         private bool IstSpielfeldVoll()
         {
             foreach (var item in Spielfeld.Children)
             {
-                Button kasten = item as Button;
+                Button kaestchen = item as Button;
 
-                if (kasten == null || kasten.Content.ToString() == "")
+                if (kaestchen == null || kaestchen.Content.ToString() == "")
                 {
                     return false;
                 }
             }
             return true;
         }
+
         private void Kasten_Click(object sender, RoutedEventArgs e)
         { 
             Button buttonKasten = (Button)sender;
+
+
+            if (IstSpielfeldVoll())
+            {
+                //SpielfeldLeeren();
+                //_istErsterSpielerAmZug = true;
+            }
+
 
             // Prüfen ob Kästchen leer ist
             if (buttonKasten.Content == null || buttonKasten.Content.ToString() == "")
@@ -61,20 +86,17 @@ namespace TicTacToe
             }
             else
             {
-                MessageBox.Show("Das Feld ist bereits besetzt. Bitte ein freies Kästchen wählen.", "Unzulässiger Zug", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("Das Feld ist bereits belegt. Bitte ein freies Kästchen wählen.", "Unzulässiger Zug", MessageBoxButton.OK, MessageBoxImage.Stop);
             }
-
-            
-            
-
-
-
-
 
             //var bisherigerVordergrund = kasten_0_0.Foreground;
             //kasten_0_0.Foreground = kasten_0_0.Background;
             //kasten_0_0.Background = bisherigerVordergrund;
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _istErsterSpielerAmZug = true;
         }
     }
 }
