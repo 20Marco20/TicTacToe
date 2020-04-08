@@ -31,26 +31,26 @@ namespace TicTacToe
         
         private void SpielfeldLeeren()
         {
-            //kasten_0_0.Content = null;
-            //kasten_1_0.Content = null;
-            //kasten_2_0.Content = null;
+            kasten_0_0.Content = null;
+            kasten_1_0.Content = null;
+            kasten_2_0.Content = null;
 
-            //kasten_0_1.Content = null;
-            //kasten_1_1.Content = null;
-            //kasten_2_1.Content = null;
+            kasten_0_1.Content = null;
+            kasten_1_1.Content = null;
+            kasten_2_1.Content = null;
 
-            //kasten_0_2.Content = null;
-            //kasten_1_2.Content = null;
-            //kasten_2_2.Content = null;
+            kasten_0_2.Content = null;
+            kasten_1_2.Content = null;
+            kasten_2_2.Content = null;
         }
 
         private bool IstSpielfeldVoll()
         {
             foreach (var item in Spielfeld.Children)
             {
-                Button kaestchen = item as Button;
+                Button b = item as Button;
 
-                if (kaestchen == null || kaestchen.Content.ToString() == "")
+                if (b.Content == null || b.Content.ToString() == string.Empty)
                 {
                     return false;
                 }
@@ -59,14 +59,14 @@ namespace TicTacToe
         }
 
         private void Kasten_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             Button buttonKasten = (Button)sender;
-
+            
 
             if (IstSpielfeldVoll())
             {
-                //SpielfeldLeeren();
-                //_istErsterSpielerAmZug = true;
+                SpielfeldLeeren();
+                _istErsterSpielerAmZug = true;
             }
 
 
