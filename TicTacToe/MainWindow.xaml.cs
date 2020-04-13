@@ -31,17 +31,17 @@ namespace TicTacToe
         
         private void SpielfeldLeeren()
         {
-            kasten_0_0.Content = null;
-            kasten_1_0.Content = null;
-            kasten_2_0.Content = null;
+            kasten_0_0.Content = string.Empty;
+            kasten_1_0.Content = string.Empty;
+            kasten_2_0.Content = string.Empty;
 
-            kasten_0_1.Content = null;
-            kasten_1_1.Content = null;
-            kasten_2_1.Content = null;
+            kasten_0_1.Content = string.Empty;
+            kasten_1_1.Content = string.Empty;
+            kasten_2_1.Content = string.Empty;
 
-            kasten_0_2.Content = null;
-            kasten_1_2.Content = null;
-            kasten_2_2.Content = null;
+            kasten_0_2.Content = string.Empty;
+            kasten_1_2.Content = string.Empty;
+            kasten_2_2.Content = string.Empty;
         }
 
         private bool IstSpielfeldVoll()
@@ -50,23 +50,49 @@ namespace TicTacToe
             {
                 Button b = item as Button;
 
-                if (b.Content == null || b.Content.ToString() == string.Empty)
+                if (b.Content == null || b.Content.ToString() == "")
                 {
                     return false;
                 }
             }
+
             return true;
+        }
+
+        private List<Button> Gewinnermittlung()
+        {
+            var result = new List<Button>();
+
+            if (Gewinnreihe(kasten_0_0, kasten_0_1, kasten_0_2))
+            {
+                result.Add(kasten_0_0);
+                result.Add(kasten_0_1);
+                result.Add(kasten_0_2);
+            }
+
+            return result;
+        }
+
+        private bool Gewinnreihe(Button kasten1, Button kasten2, Button kasten3)
+        {
+            if (kasten1.Content.ToString() != ""
+                && kasten1.Content.ToString() == kasten2.Content.ToString()
+                && kasten2.Content.ToString() == kasten3.Content.ToString())
+            {
+                return true;
+            }
+            return false;
         }
 
         private void Kasten_Click(object sender, RoutedEventArgs e)
         {
             Button buttonKasten = (Button)sender;
-            
 
             if (IstSpielfeldVoll())
             {
                 SpielfeldLeeren();
                 _istErsterSpielerAmZug = true;
+                return;
             }
 
 
@@ -81,17 +107,25 @@ namespace TicTacToe
                 else   // Spieler Y
                 {
                     buttonKasten.Content = "O";
+                    //var bisherigerVordergrund = kasten_0_0.Foreground;
+                    //kasten_0_0.Foreground = kasten_0_0.Background;
+                    //kasten_0_0.Background = bisherigerVordergrund;
                     _istErsterSpielerAmZug = true;
                 }
             }
             else
             {
                 MessageBox.Show("Das Feld ist bereits belegt. Bitte ein freies Kästchen wählen.", "Unzulässiger Zug", MessageBoxButton.OK, MessageBoxImage.Stop);
+                return;
             }
 
-            //var bisherigerVordergrund = kasten_0_0.Foreground;
-            //kasten_0_0.Foreground = kasten_0_0.Background;
-            //kasten_0_0.Background = bisherigerVordergrund;
+
+            var gewinnReihe = Gewinnermittlung();
+
+            if (gewinnReihe.Count == 3)
+            {
+                MessageBox.Show("Sieg");
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
