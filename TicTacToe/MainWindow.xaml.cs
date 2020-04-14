@@ -27,6 +27,7 @@ namespace TicTacToe
         public MainWindow()
         {
             InitializeComponent();
+            SpielfeldLeeren();
         }
         
         private void SpielfeldLeeren()
@@ -69,19 +70,64 @@ namespace TicTacToe
                 result.Add(kasten_0_1);
                 result.Add(kasten_0_2);
             }
+            else if (Gewinnreihe(kasten_1_0, kasten_1_1, kasten_1_2))
+            {
+                result.Add(kasten_1_0);
+                result.Add(kasten_1_1);
+                result.Add(kasten_1_2);
+            }
+            else if (Gewinnreihe(kasten_2_0, kasten_2_1, kasten_2_2))
+            {
+                result.Add(kasten_2_0);
+                result.Add(kasten_2_1);
+                result.Add(kasten_2_2);
+            }
+            else if (Gewinnreihe(kasten_0_0, kasten_1_0, kasten_2_0))
+            {
+                result.Add(kasten_0_0);
+                result.Add(kasten_1_0);
+                result.Add(kasten_2_0);
+            }
+            else if (Gewinnreihe(kasten_0_1, kasten_1_1, kasten_2_1))
+            {
+                result.Add(kasten_0_1);
+                result.Add(kasten_1_1);
+                result.Add(kasten_2_1);
+            }
+            else if (Gewinnreihe(kasten_0_2, kasten_1_2, kasten_2_2))
+            {
+                result.Add(kasten_0_2);
+                result.Add(kasten_1_2);
+                result.Add(kasten_2_2);
+            }
+            else if (Gewinnreihe(kasten_0_0, kasten_1_1, kasten_2_2))
+            {
+                result.Add(kasten_0_0);
+                result.Add(kasten_1_1);
+                result.Add(kasten_2_2);
+            }
+            else if (Gewinnreihe(kasten_2_0, kasten_1_1, kasten_0_2))
+            {
+                result.Add(kasten_2_0);
+                result.Add(kasten_1_1);
+                result.Add(kasten_0_2);
+            }
 
             return result;
         }
 
         private bool Gewinnreihe(Button kasten1, Button kasten2, Button kasten3)
         {
-            if (kasten1.Content.ToString() != ""
-                && kasten1.Content.ToString() == kasten2.Content.ToString()
-                && kasten2.Content.ToString() == kasten3.Content.ToString())
-            {
-                return true;
-            }
+            //if (kasten1.Content != null || kasten2.Content != null || kasten3.Content != null)
+            //{
+                if (kasten1.Content.ToString() != "" && kasten1.ToString() == kasten2.ToString() && kasten2.ToString() == kasten3.ToString())
+                {
+                    return true;
+                }
+
+            //}
             return false;
+
         }
 
         private void Kasten_Click(object sender, RoutedEventArgs e)
@@ -131,6 +177,7 @@ namespace TicTacToe
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _istErsterSpielerAmZug = true;
+            //Gewinnreihe(null, null, null);
         }
     }
 }
