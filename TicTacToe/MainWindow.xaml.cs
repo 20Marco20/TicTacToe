@@ -130,6 +130,12 @@ namespace TicTacToe
 
         }
 
+        private void GewinnreiheHervorheben(Button kasten1, Button kasten2, Button kasten3)
+        {
+            kasten1.Background = Brushes.Orange;
+            kasten2.Background = Brushes.Orange;
+            kasten3.Background = Brushes.Orange;
+        }
         private void Kasten_Click(object sender, RoutedEventArgs e)
         {
             Button buttonKasten = (Button)sender;
@@ -170,14 +176,23 @@ namespace TicTacToe
 
             if (gewinnReihe.Count == 3)
             {
-                MessageBox.Show("Sieg");
+                GewinnreiheHervorheben(gewinnReihe[0], gewinnReihe[1], gewinnReihe[2]);
+
+                if (_istErsterSpielerAmZug)
+                {
+                    MessageBox.Show("Spieler 2 (O) hat gewonnen!");
+                }
+                else
+                {
+                    MessageBox.Show("Spieler 1 (X) hat gewonnen!");
+                }
+                SpielfeldLeeren();
             }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _istErsterSpielerAmZug = true;
-            //Gewinnreihe(null, null, null);
         }
     }
 }
