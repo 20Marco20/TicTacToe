@@ -163,6 +163,7 @@ namespace TicTacToe
             // Prüfen ob Kästchen leer ist
             if (buttonKasten.Content == null || buttonKasten.Content.ToString() == "")
             {
+                lblHinweis.Content = "";
                 if (_istErsterSpielerAmZug)   // Spieler X
                 {
                     buttonKasten.Content = "X";
@@ -179,7 +180,8 @@ namespace TicTacToe
             }
             else
             {
-                MessageBox.Show("Das Feld ist bereits belegt. Bitte ein freies Kästchen wählen.", "Unzulässiger Zug", MessageBoxButton.OK, MessageBoxImage.Stop);
+                lblHinweis.Content = "Kästchen belegt!";
+                //MessageBox.Show("Das Feld ist bereits belegt. Bitte ein freies Kästchen wählen.", "Unzulässiger Zug", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
 
