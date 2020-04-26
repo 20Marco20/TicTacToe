@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 
 namespace TicTacToe
@@ -43,6 +33,32 @@ namespace TicTacToe
             kasten_0_2.Content = string.Empty;
             kasten_1_2.Content = string.Empty;
             kasten_2_2.Content = string.Empty;
+
+
+            kasten_0_0.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+            kasten_1_0.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+            kasten_2_0.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+
+            kasten_0_1.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+            kasten_1_1.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+            kasten_2_1.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+
+            kasten_0_2.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+            kasten_1_2.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+            kasten_2_2.Background = (Brush)new BrushConverter().ConvertFrom("#FF73ABFF");
+
+
+            kasten_0_0.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
+            kasten_1_0.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
+            kasten_2_0.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
+
+            kasten_0_1.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
+            kasten_1_1.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
+            kasten_2_1.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
+
+            kasten_0_2.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
+            kasten_1_2.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
+            kasten_2_2.Foreground = (Brush)new BrushConverter().ConvertFrom("AliceBlue");
         }
 
         private bool IstSpielfeldVoll()
@@ -116,25 +132,21 @@ namespace TicTacToe
             return result;
         }
 
-        private bool Gewinnreihe(Button kasten1, Button kasten2, Button kasten3)
+        private bool Gewinnreihe(Button erstesKaestchen, Button zweitesKaestchen, Button drittesKaestchen)
         {
-            //if (kasten1.Content != null || kasten2.Content != null || kasten3.Content != null)
-            //{
-                if (kasten1.Content.ToString() != "" && kasten1.ToString() == kasten2.ToString() && kasten2.ToString() == kasten3.ToString())
-                {
-                    return true;
-                }
+            if (erstesKaestchen.Content.ToString() != "" && erstesKaestchen.ToString() == zweitesKaestchen.ToString() && zweitesKaestchen.ToString() == drittesKaestchen.ToString())
+            {
+                return true;
+            }
 
-            //}
             return false;
-
         }
 
-        private void GewinnreiheHervorheben(Button kasten1, Button kasten2, Button kasten3)
+        private void GewinnreiheHervorheben(Button erstesKaestchen, Button zweitesKaestchen, Button drittesKaestchen)
         {
-            kasten1.Background = Brushes.Orange;
-            kasten2.Background = Brushes.Orange;
-            kasten3.Background = Brushes.Orange;
+            erstesKaestchen.Background = Brushes.Orange;
+            zweitesKaestchen.Background = Brushes.Orange;
+            drittesKaestchen.Background = Brushes.Orange;
         }
         private void Kasten_Click(object sender, RoutedEventArgs e)
         {

@@ -19,7 +19,7 @@
             </Setter>
             <Setter Property="Foreground" Value="AliceBlue"/>
             <Setter Property="FontSize" Value="90"/>
-            <Setter Property="BorderBrush" Value="#FF598CFF"/>
+            <Setter Property="BorderBrush" Value="#FF90B2FF"/>
             <Setter Property="BorderThickness" Value="0.5"/>
         </Style>
     </Window.Resources>
