@@ -163,7 +163,7 @@ namespace TicTacToe
             // Prüfen ob Kästchen leer ist
             if (buttonKasten.Content == null || buttonKasten.Content.ToString() == "")
             {
-                lblHinweis.Content = "";
+                lblHinweis.Content = string.Empty;
                 if (_istErsterSpielerAmZug)   // Spieler X
                 {
                     buttonKasten.Content = "X";
@@ -194,11 +194,14 @@ namespace TicTacToe
 
                 if (_istErsterSpielerAmZug)
                 {
-                    MessageBox.Show("Spieler 2 (O) hat gewonnen!");
+                    lblHinweis.Content = "Spieler 2 (O) hat gewonnen!";
+                    //MessageBox.Show("Spieler 2 (O) hat gewonnen!");
                 }
                 else
                 {
-                    MessageBox.Show("Spieler 1 (X) hat gewonnen!");
+                    lblHinweis.Content = "Spieler 1 (X) hat gewonnen!";
+
+                    //MessageBox.Show("Spieler 1 (X) hat gewonnen!");
                 }
                 SpielfeldLeeren();
             }
