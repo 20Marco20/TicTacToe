@@ -22,6 +22,8 @@ namespace TicTacToe
         
         private void SpielfeldLeeren()
         {
+            //lblHinweis.Visibility = Visibility.Hidden;
+
             kasten_0_0.Content = string.Empty;
             kasten_1_0.Content = string.Empty;
             kasten_2_0.Content = string.Empty;
@@ -148,8 +150,10 @@ namespace TicTacToe
             zweitesKaestchen.Background = Brushes.Orange;
             drittesKaestchen.Background = Brushes.Orange;
         }
+
         private void Kasten_Click(object sender, RoutedEventArgs e)
         {
+            //lblHinweis.Visibility = Visibility.Hidden;
             Button buttonKasten = (Button)sender;
 
             if (IstSpielfeldVoll())
@@ -172,14 +176,15 @@ namespace TicTacToe
                 else   // Spieler Y
                 {
                     buttonKasten.Content = "O";
+                    _istErsterSpielerAmZug = true;
                     //var bisherigerVordergrund = kasten_0_0.Foreground;
                     //kasten_0_0.Foreground = kasten_0_0.Background;
                     //kasten_0_0.Background = bisherigerVordergrund;
-                    _istErsterSpielerAmZug = true;
                 }
             }
             else
             {
+                lblHinweis.Visibility = Visibility.Visible;
                 lblHinweis.Content = "Kästchen belegt!";
                 //MessageBox.Show("Das Feld ist bereits belegt. Bitte ein freies Kästchen wählen.", "Unzulässiger Zug", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
@@ -194,13 +199,14 @@ namespace TicTacToe
 
                 if (_istErsterSpielerAmZug)
                 {
+                    lblHinweis.Visibility = Visibility.Visible;
                     lblHinweis.Content = "Spieler 2 (O) hat gewonnen!";
                     //MessageBox.Show("Spieler 2 (O) hat gewonnen!");
                 }
                 else
                 {
+                    lblHinweis.Visibility = Visibility.Visible;
                     lblHinweis.Content = "Spieler 1 (X) hat gewonnen!";
-
                     //MessageBox.Show("Spieler 1 (X) hat gewonnen!");
                 }
                 SpielfeldLeeren();
@@ -210,6 +216,7 @@ namespace TicTacToe
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _istErsterSpielerAmZug = true;
+            lblHinweis.Visibility = Visibility.Hidden;
         }
     }
 }
